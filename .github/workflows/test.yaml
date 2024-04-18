@@ -1,0 +1,25 @@
+name: "Deployment Workflow"
+on: 
+    push:
+        branches:
+            - tests
+
+jobs: 
+    simple_deploy:
+        runs-on: ubuntu-latest
+        steps:
+        - name: "Checkouts out"
+          uses: actions/checkout@v4
+        
+        - name: "Build the image"
+          run: |
+                sudo docker build -t theoafactor/bik_latest:123 frontend/
+        - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets. }}
+          password: ${{ secrets. }}
+            
+        # - name: "Push the image to DockerHub"
+        #   run: |
+        #         sudo docker push theoafactor/bik_latest:123
