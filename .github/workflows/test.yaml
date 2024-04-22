@@ -5,27 +5,42 @@ on:
             - tests
 
 jobs: 
-    simple_deploy:
+    tests_deployment:
         runs-on: ubuntu-latest
         steps:
+        
         - name: "Checkouts out"
           uses: actions/checkout@v4
+
+        - name: "create version number"
+          run: | 
+            echo "APP_VERSION=${RANDOM}" >> $GITHUB_ENV
+
+            echo ${{ env.APP_VERSION }}
         
         - name: "Build the image"
           run: |
-                sudo docker build -t theoafactor/bik_latest:123 frontend/
-
-        - name: Log in to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+                docker build -t theoafactor/simplewebapp:${{ env.APP_VERSION }} frontend/
         
-        -name: "push"
+        - name: "LOGIN TO DOCKERHUB"
+          uses: docker/login-action@v3
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+        - name: "push to docker hub"
           run: | 
-                sudo docker push onlysalam/bik_latest:123
-              
-            
-        # - name: "Push the image to DockerHub"
-        #   run: |
-        #         sudo docker push theoafactor/bik_latest:123
+                docker push onlysalam/simplewebapp:${{ env.APP_VERSION }}
+        
+        - name: "Announce the latest version of the deployment"
+          uses: dawidd6/action-send-mail@v3
+          with:
+            username: yomiabdulsalam11@gmail.com
+            password: ${{ secrets.EMAIL_PASSWORD }}
+            server_address: smtp.gmail.com
+            server_port: 465
+            secure: true
+            subject: "New Docker Image Version for Simple Web App"
+            to: "yomiabdulsalam11@gmail.com"
+            from: Yomi Abdulsalam <yomiabdulsalam11@gmail.com>
+            body: "New image build: ${{ env.APP_VERSION }}"
