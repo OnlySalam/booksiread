@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: theoafactor/bir_class101_frontend:2
+        image: onlysalam/simplewebapp:30170
         ports:
         - containerPort: 3000
