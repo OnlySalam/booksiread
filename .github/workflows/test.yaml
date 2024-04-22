@@ -30,7 +30,7 @@ jobs:
 
         - name: "push to docker hub"
           run: | 
-                sudo docker push onlysalam/simplewebapp:${{ env.APP_VERSION }}
+                docker push onlysalam/simplewebapp:${{ env.APP_VERSION }}
         
         - name: "Announce the latest version of the deployment"
           uses: dawidd6/action-send-mail@v3
