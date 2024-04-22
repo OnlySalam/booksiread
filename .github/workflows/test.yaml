@@ -20,7 +20,7 @@ jobs:
         
         - name: "Build the image"
           run: |
-                docker build -t theoafactor/simplewebapp:${{ env.APP_VERSION }} frontend/
+                docker build -t onlysalam/simplewebapp:${{ env.APP_VERSION }} frontend/
         
         - name: "LOGIN TO DOCKERHUB"
           uses: docker/login-action@v3
