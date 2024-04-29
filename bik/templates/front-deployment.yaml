@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: 'onlysalam/simplewebap:{{ .values.image.tag }}'
+        image: onlysalam/simplewebapp:{{ .Values.image.tag }}
         ports:
         - containerPort: 3000
