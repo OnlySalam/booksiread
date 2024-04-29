@@ -16,7 +16,6 @@ jobs:
           run: | 
             echo "APP_VERSION=${RANDOM}" >> $GITHUB_ENV
 
-            echo ${{ env.APP_VERSION }}
         
         - name: "Build the image"
           run: |
