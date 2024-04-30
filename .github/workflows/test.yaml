@@ -63,7 +63,7 @@ jobs:
             # helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP.VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
             
             echo $APP_VERSION
-            yq eval ".spec.template.spec.containers[0].image=onlysalam/simplewebapp:${{ env.APP.VERSION }}" bik/templates/canary-deploymentv1.yaml | kubectl apply -f -
+            yq eval ".spec.template.spec.containers[0].image=onlysalam/simplewebapp:1221" bik/templates/canary-deploymentv1.yaml | kubectl apply -f -
 
         # - name: "Announce the latest version of the deployment"
         #   uses: dawidd6/action-send-mail@v3
