@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: canaryv1
-        image: 'onlysalam/simplewebapp:{{ .Values.canaryv1image.tag }}'
+        image: 'onlysalam/simplewebapp:$APP_VERSION'
         # resources:
         #   limits:
         #     memory: "128Mi"
