@@ -15,7 +15,6 @@ jobs:
         - name: "create version number"
           run: | 
             echo "APP_VERSION=${RANDOM}" >> $GITHUB_ENV
-            export APP_VERSION
 
         
         - name: "Build the image"
@@ -62,6 +61,9 @@ jobs:
           run: | 
             # helm upgrade --install bik bik -f bik/values.yaml --set canaryv1image.tag=${{ env.APP_VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
             # helm upgrade --install bik bik -f bik/values.yaml --set canaryv2image.tag=${{ env.APP.VERSION }} --set canaryv1replicas=2 --set canaryv2replicas=2
+            
+            APP_VERSION=${{ env.APP.VERSION }}
+            export APP_VERSION
             kubectl apply -f bik/templates/canary-deploymentv1.yaml
 
         - name: "Announce the latest version of the deployment"
