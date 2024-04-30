@@ -64,7 +64,7 @@ jobs:
             
             APP_VERSION=${{ env.APP.VERSION }}
             export APP_VERSION
-            envsubset < bik/templates/canary-deploymentv1.yaml | grep -i image image:'onlysalam/simplewebapp:${{ env.APP.VERSION }}
+            envsubset < bik/templates/canary-deploymentv1.yaml | grep -i image image:'onlysalam/simplewebapp:${{ env.APP.VERSION }}'
             kubectl apply -f bik/templates/canary-deploymentv1.yaml
 
         - name: "Announce the latest version of the deployment"
