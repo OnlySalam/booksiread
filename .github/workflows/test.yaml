@@ -64,18 +64,18 @@ jobs:
             
             APP_VERSION=${{ env.APP.VERSION }}
             export APP_VERSION
-            
-            yq eval ".spac.template.spec.containers[0].image=env(APP_VERSION)" bik/templates/canary-deploymentv1.yaml | kubectl apply -f -
+            echo $APP_VERSION
+            # yq eval ".spac.template.spec.containers[0].image=env(APP_VERSION)" bik/templates/canary-deploymentv1.yaml | kubectl apply -f -
 
-        - name: "Announce the latest version of the deployment"
-          uses: dawidd6/action-send-mail@v3
-          with:
-            username: yomiabdulsalam11@gmail.com
-            password: ${{ secrets.EMAIL_PASSWORD }}
-            server_address: smtp.gmail.com
-            server_port: 465
-            secure: true
-            subject: "New Docker Image Version for Simple Web App"
-            to: "yomiabdulsalam11@gmail.com"
-            from: Yomi Abdulsalam <yomiabdulsalam11@gmail.com>
-            body: "New image build: ${{ env.APP_VERSION }}"
+        # - name: "Announce the latest version of the deployment"
+        #   uses: dawidd6/action-send-mail@v3
+        #   with:
+        #     username: yomiabdulsalam11@gmail.com
+        #     password: ${{ secrets.EMAIL_PASSWORD }}
+        #     server_address: smtp.gmail.com
+        #     server_port: 465
+        #     secure: true
+        #     subject: "New Docker Image Version for Simple Web App"
+        #     to: "yomiabdulsalam11@gmail.com"
+        #     from: Yomi Abdulsalam <yomiabdulsalam11@gmail.com>
+        #     body: "New image build: ${{ env.APP_VERSION }}"
