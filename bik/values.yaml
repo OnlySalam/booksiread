@@ -9,13 +9,13 @@ canaryv1image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 9346
+  tag: "9346"
 
 canaryv2image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 19086
+  tag: "19086"
 
 imagePullSecrets: []
 nameOverride: ""
