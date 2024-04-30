@@ -65,7 +65,7 @@ jobs:
             APP_VERSION=${{ env.APP.VERSION }}
             export APP_VERSION
             echo $APP_VERSION
-            yq eval ".spac.template.spec.containers[0].image=env(${{ env.APP.VERSION }})" bik/templates/canary-deploymentv1.yaml | kubectl apply -f -
+            yq eval ".spec.template.spec.containers[0].image=env(APP_VERSION)" bik/templates/canary-deploymentv1.yaml | kubectl apply -f -
 
         # - name: "Announce the latest version of the deployment"
         #   uses: dawidd6/action-send-mail@v3
