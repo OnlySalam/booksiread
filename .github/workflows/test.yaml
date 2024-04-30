@@ -64,8 +64,8 @@ jobs:
             
             APP_VERSION=${{ env.APP.VERSION }}
             export APP_VERSION
-            envsubset < bik/templates/canary-deploymentv1.yaml | grep -i image image:'onlysalam/simplewebapp:${{ env.APP.VERSION }}'
-            kubectl apply -f bik/templates/canary-deploymentv1.yaml
+            
+            yq eval ".spac.template.spec.containers[0].image=env(APP_VERSION)" bik/templates/canary-deploymentv1.yaml | kubectl apply -f -
 
         - name: "Announce the latest version of the deployment"
           uses: dawidd6/action-send-mail@v3
