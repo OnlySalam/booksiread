@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: canaryv1
 spec:
+  replicas: {{ .Values.canaryv1replicas }}
   selector:
     matchLabels:
       app: canaryv1
