@@ -47,7 +47,7 @@ jobs:
         
         - name: "connect to the cluster"
           run: |
-            aws eks update-kubeconfig --name booksiread
+            aws eks update-kubeconfig --name webapp
         
 
         - name: "Install Helm"
